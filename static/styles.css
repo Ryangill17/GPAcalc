@@ -1,0 +1,248 @@
+.websites {
+    position: absolute;
+    left: 150px;
+    width: 5000px;
+    height: 120px;
+  }
+
+td {
+width: 300px;
+height: 50px;
+margin-left: auto;
+margin-right: auto;
+
+
+}
+
+th {
+width: 100px;
+height: 10%;
+text-align: center;
+background-color: #ffffff;
+
+
+}
+
+table {
+
+width: 300px;
+height: 100px;
+margin-left: auto;
+margin-right: auto;
+
+}
+
+.gpa {
+margin-down:auto;
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+.header {
+background-color: #ffffff; /*#477bff*/
+color: #fff;
+margin-bottom: 2rem;
+padding: 2rem 1rem;
+text-align: center;
+}
+.Qheader {
+background-color: #b90e31;
+color: #fff;
+margin-bottom: 2rem;
+padding: 2rem 1rem;
+text-align: center;
+}
+.Wheader {
+background-color: #ffffff;
+color: #fff;
+margin-bottom: 2rem;
+padding: 2rem 1rem;
+text-align: center;
+}
+.Macheader {
+background-color: #FDBF57;
+color: #fff;
+margin-bottom: 2rem;
+padding: 2rem 1rem;
+text-align: center;
+}
+.waterlooheader {
+background-color: #FED34C;
+color: #fff;
+margin-bottom: 2rem;
+padding: 2rem 1rem;
+text-align: center;
+}
+.uoftorontoheader {
+  background-color: #ffffff;
+  color: #fff;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  }
+
+.guelphheader {
+  background-color: #000000;
+  color: #fff;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  }
+  .yorkheader {
+    background-color: #ffffff;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    }
+  .windsorheader {
+    background-color: #FFCE00;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    }
+  .laurierheader {
+    background-color: #f2a900;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    }
+  .ottawaheader {
+    background-color: #80746C;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    }
+  .trentheader {
+    background-color: #5B7F95;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    }
+  .tmuheader {
+    background-color: #004c9b;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    }
+  .ontarioTechheader {
+    background-color: #E75D2A;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    }
+
+.algomaheader {
+  background-color: #B3282D;
+  color: #fff;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  }
+.carletonheader {
+  background-color: #000000;
+  color: #fff;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  }
+.brockheader {
+  background-color: #fe0303;
+  color: #fff;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  text-align: center;
+ }
+ .lakeheadheader {
+  background-color: #00427a;
+  color: #fff;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  }
+  .nipissingheader {
+    background-color: #00457C;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    }
+    .ocadheader {
+      background-color: #fff;
+      color: #fff;
+      margin-bottom: 2rem;
+      padding: 2rem 1rem;
+      text-align: center;
+      }
+button {
+background-color: #0000ff;
+border: none;
+color: white;
+padding: 15px 15px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 20px;
+}
+
+#gpa {
+
+font-size: 30px;
+background-color: #ffffff;
+}
+
+.dropdown {
+  text-align: center;
+  
+}
+
+.image-container {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 20px; 
+}
+
+.image-container img {
+  width: 350px; 
+  height: 225px;
+}
+
+.image-container a {
+  display: block;
+}
+
+.dropdown-container {
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.dropdown-content {
+  text-align: center;
+  max-height: 300px;
+  overflow-y: auto;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.dropdown-content.show {
+  display: block;
+}

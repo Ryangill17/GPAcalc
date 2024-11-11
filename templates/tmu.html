@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block bc %}
+<style>
+    body { background-color: #ffdc00; }
+    header {
+        background-color: transparent; 
+    }
+
+</style>
+{% endblock %}
+
+{% block header %}
+<div class="tmuheader" >
+    <h1>Toronto Metropolitan University GPA Calculator</h1>
+</div>
+{% endblock %}
+
+{% block main %}
+<script>
+var rowIndex = 8;
+
+function percentageToGPA(grade) {
+    if (grade >= 90) return 4.33;
+    else if (grade >= 85) return 4.0;
+    else if (grade >= 80) return 3.67;
+    else if (grade >= 77) return 3.33;
+    else if (grade >= 73) return 3.0;
+    else if (grade >= 70) return 2.67;
+    else if (grade >= 67) return 2.33;
+    else if (grade >= 63) return 2.0;
+    else if (grade >= 60) return 1.67;
+    else if (grade >= 57) return 1.33;
+    else if (grade >= 53) return 1.0;
+    else if (grade >= 50) return 0.67;
+    else return 0.0;
+}
+
+function gpaToLetterGrade(gpa) {
+    if (gpa >= 4.33) return "A+";
+    else if (gpa >= 4.0) return "A";
+    else if (gpa >= 3.67) return "A-";
+    else if (gpa >= 3.33) return "B+";
+    else if (gpa >= 3.0) return "B";
+    else if (gpa >= 2.67) return "B-";
+    else if (gpa >= 2.33) return "C+";
+    else if (gpa >= 2.0) return "C";
+    else if (gpa >= 1.67) return "C-";
+    else if (gpa >= 1.33) return "D+";
+    else if (gpa >= 1.0) return "D";
+    else if (gpa >= 0.67) return "D-";
+    else return "F";
+}
+
+function calculateGPA() {
+    let grades = [];
+    let credits = [];
+    
+    // Collect grade and credit values from the dynamically generated input fields
+    for (let i = 1; i <= rowIndex; i++) {
+        let gradeValue = parseFloat(document.getElementById("grade" + i)?.value);
+        let creditValue = parseFloat(document.getElementById("credit" + i)?.value);
+        if (!isNaN(gradeValue) && !isNaN(creditValue)) {
+            grades.push(gradeValue);
+            credits.push(creditValue);
+        }
+    }
+
+    const validEntries = grades.map((grade, index) => ({
+        gpa: percentageToGPA(grade),
+        credit: credits[index]
+    })).filter(entry => !isNaN(entry.gpa) && !isNaN(entry.credit));
+
+    if (validEntries.length === 0) {
+        alert("Please enter at least one grade and credit.");
+        return;
+    }
+
+    // Calculate weighted GPA
+    const totalWeightedGrades = validEntries.reduce((sum, entry) => sum + (entry.gpa * entry.credit), 0);
+    const totalCredits = validEntries.reduce((sum, entry) => sum + entry.credit, 0);
+    var gpa = totalWeightedGrades / totalCredits;
+
+    const totalWeightedPercentage = grades.reduce((sum, grade, index) => sum + (grade * credits[index]), 0);
+    const avgPercentage = totalWeightedPercentage / totalCredits;
+
+    const letterGrade = gpaToLetterGrade(gpa);
+
+    document.getElementById("gpa").innerHTML = `<h3>Percentage: <span>${avgPercentage.toFixed(2)}%</span> | GPA: <span>${gpa.toFixed(2)}</span> | Letter Grade: <span>${letterGrade}</span></h3>`;
+}
+
+function addRow() {
+    rowIndex++;
+
+    const table = document.getElementById("gradesTable");
+    const row = table.insertRow(-1);
+
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+
+    cell1.innerHTML = `<input type="number" id="credit${rowIndex}" placeholder="Credits">`;
+    cell2.innerHTML = `<input type="number" id="grade${rowIndex}" placeholder="Enter Grade (%)">`;
+}
+</script>
+{% endblock %}

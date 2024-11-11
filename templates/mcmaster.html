@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+
+{% block bc %}
+<style>
+    body { background-color: #7A003C; }
+    header {
+        background-color: transparent; 
+    }
+
+</style>
+{% endblock %}
+
+{% block header %}
+<div style="color:black;" class="Macheader" >
+    <h1>McMaster GPA Calculator</h1>
+</div>
+{% endblock %}
+
+{% block main %}
+        <script>
+
+                var rowIndex = 8;
+                function percentageToGPA(grade) {
+                            if (grade >= 90) return 4; 
+                            else if (grade >= 85) return 3.9;
+                            else if (grade >= 80) return 3.7;
+                            else if (grade >= 77) return 3.3;
+                            else if (grade >= 73) return 3.0;
+                            else if (grade >= 70) return 2.7;
+                            else if (grade >= 67) return 2.3;
+                            else if (grade >= 63) return 2.0;
+                            else if (grade >= 60) return 1.7;
+                            else if (grade >= 57) return 1.3;
+                            else if (grade >= 53) return 1.0;
+                            else if (grade >= 50) return 0.7;
+                            else return 0.0;
+                        }
+                        function gpaToLetterGrade(gpa) {
+                            if (gpa >= 4.0) return "A+";
+                            else if (gpa >= 3.9) return "A";
+                            else if (gpa >= 3.7) return "A-";
+                            else if (gpa >= 3.3) return "B+";
+                            else if (gpa >= 3.0) return "B";
+                            else if (gpa >= 2.7) return "B-";
+                            else if (gpa >= 2.3) return "C+";
+                            else if (gpa >= 2.0) return "C";
+                            else if (gpa >= 1.7) return "C-";
+                            else if (gpa >= 1.3) return "D+";
+                            else if (gpa >= 1.0) return "D";
+                            else if (gpa >= 0.7) return "D-";
+                            else return "F";
+                        }
+
+                        function gradeToPoints(grade) {
+                            if (grade >= 90) return 12;
+                            else if (grade >= 85) return 11;
+                            else if (grade >= 80) return 10;
+                            else if (grade >= 77) return 9;
+                            else if (grade >= 73) return 8;
+                            else if (grade >= 70) return 7;
+                            else if (grade >= 67) return 6;
+                            else if (grade >= 63) return 5;
+                            else if (grade >= 60) return 4;
+                            else if (grade >= 57) return 3;
+                            else if (grade >= 53) return 2;
+                            else if (grade >= 50) return 1;
+                            else return 0;
+                        }
+               function calculateGPA() {
+                let grades = [];
+            let credits = [];
+            // Get all the grade and credit values from dynamically created inputs
+            for (let i = 1; i <= rowIndex; i++) {
+                let gradeValue = parseFloat(document.getElementById("grade" + i)?.value);
+                let creditValue = parseFloat(document.getElementById("credit" + i)?.value);
+                if (!isNaN(gradeValue) && !isNaN(creditValue)) {
+                    grades.push(gradeValue);
+                    credits.push(creditValue);
+                }
+            }
+
+                // Filter out empty values
+                const validEntries = grades.map((grade, index) => ({
+                    grade: grade,
+                    gpa: percentageToGPA(grade),
+                    points: gradeToPoints(grade),
+                    credit: credits[index]
+                })).filter(entry => !isNaN(entry.grade) && !isNaN(entry.gpa) && !isNaN(entry.credit));
+                if (validEntries.length === 0) {
+                    alert("Please enter at least one grade and credit.");
+                    return;
+                }
+
+                // Calculate weighted GPA
+                const totalWeightedGrades = validEntries.reduce((sum, entry) => sum + (entry.gpa * entry.credit), 0);
+                const totalWeightedPercentage = validEntries.reduce((sum, entry) => sum + (entry.grade * entry.credit), 0);
+                const totalWeightedPoints = validEntries.reduce((sum, entry) => sum + (entry.points * entry.credit), 0);
+                const totalCredits = validEntries.reduce((sum, entry) => sum + entry.credit, 0);
+                var gpa = totalWeightedGrades / totalCredits;
+                var avgPercentage = totalWeightedPercentage / totalCredits;
+                var avgPoints = totalWeightedPoints / totalCredits;
+
+                const letterGrade = gpaToLetterGrade(gpa);
+
+                document.getElementById("gpa").innerHTML = `<h3>Percentage: <span>${avgPercentage.toFixed(2)}%</span> | GPA: <span>${gpa.toFixed(2)}</span> | Letter Grade: <span>${letterGrade}</span> | Point Grade: <span>${avgPoints.toFixed(2)}</span></h3>`;
+                    }
+            function addRow() {
+            rowIndex++;
+
+            const table = document.getElementById("gradesTable");
+            const row = table.insertRow(-1);
+
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+
+            cell1.innerHTML = `<input type="number" id="credit${rowIndex}" placeholder="Credits">`;
+            cell2.innerHTML = `<input type="number" id="grade${rowIndex}" placeholder="Enter Grade(%)">`;
+        }
+
+        </script>
+        {% endblock %}
