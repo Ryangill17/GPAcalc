@@ -1,6 +1,6 @@
 ONTARIO UNIVERSITY GPA CALCULATOR
 
-#### VIDEO DEMO:
+#### VIDEO DEMO: https://youtu.be/a35poDktZ9E
 
 #### DESCRIPTION:
 
